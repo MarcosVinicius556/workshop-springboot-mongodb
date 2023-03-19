@@ -19,7 +19,11 @@ public class User implements Serializable{
 	private String name;
 	private String email;
 	
-	@DBRef(lazy=true) //Indica que vai ser referência para outras coleções
+	@DBRef(lazy=true) 
+	/*
+	 * Indica que vai ser referência para outras coleções, a propriedade lazy, 
+	 * garante que só sserá buscado os posts, quando esta propriedade for acessada
+	 */
 	private List<Post> posts = new ArrayList<>();
 	
 	public User() {
