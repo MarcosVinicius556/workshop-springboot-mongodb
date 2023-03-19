@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +26,12 @@ public class UserReource {
 												 .map(x -> new UserDTO(x))
 												 .collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDto);
+	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.GET) //Or @GetMapping
+	public ResponseEntity<UserDTO> findById(@PathVariable String id){
+		UserDTO obj = new UserDTO(service.findById(id));
+		return ResponseEntity.ok().body(obj);
 	}
 	
 }
